@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Com texto: o desafio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="entrada">
+        <h1 id="t1">WORD - O DESAFIO</h1>
+        <span id="g1">
+
+        <input type="text" placeholder="Insira sua palavra"  class="form-control mt-3" id="tentativa">
+        <input type="button" value="Tentar"  class="btn btn-dark mt-3 ml-3" id="tentar"> 
+    </span>
+        <div id="tentativas" class="mt-4">
+            <h2 id="aviso">Suas tentativas: <span id="cont">0</span></h2>
+    </div>
+    <script>
+         function encontrarPosicao(array, valor) {
+        for (let i = 0; i < array.length; i++) {
+        if (array[i].toUpperCase() === valor.toUpperCase()) {
+        return i; 
+        }
+  }
+  return -1;
+}
+
+     let lista =  [
+    "Amor", "Romance", "Paixão", "Beijo", "Carinho", "Afeto", "Abraço", "Aconchego", "Calor", "Lareira",
+    "Fogo", "Chama", "Brasa", "Incêndio", "Bombeiro", "Herói", "Coragem", "Valente", "Destemido", "Determinação",
+    "Persistência", "Resiliência", "Força", "Musculatura", "Exercício", "Saúde", "Bem-estar", "Felicidade", "Sorriso",
+    "Alegria", "Diversão", "Risada", "Comédia", "Teatro", "Palhaço","Palhaçada", "Circo", "Malabarismo", "Equilíbrio", "Estabilidade",
+    "Fundação", "Base", "Estrutura", "Arquitetura", "Construção", "Edifício", "Arranha-céu", "Altura", "Céu",
+    "Estrela", "Galáxia", "Universo", "Cosmos", "Infinito", "Eternidade", "Tempo", "Relógio", "Segundo", "Minuto",
+    "Hora", "Nascer do sol", "Manhã", "Café", "Energia", "Elétrico", "Bateria", "Carregador", "Conexão", "Internet",
+    "Rede", "Teia", "Aranha", "Inseto", "Formiga", "Colônia", "Sociedade", "Brasil","Comunidade", "Grupo", "Equipe", "Time",
+    "Pulso", "Batimento", "Coração", "Sentimento", "Emoção", "Expressão", "Arte", "Pintura", "Tinta", "Escova",
+    "Cabelo", "Beleza", "Elegância", "Graciosidade", "Dança", "Música", "Harmonia", "Melodia", "Ritmo", "Tambor",
+    "Instrumento", "Guitarra", "Corda", "Arco", "Flecha", "Alvo", "Precisão", "Certeza", "Confiança", "Segurança",
+    "Proteção", "Abrigo", "Casa", "Lar", "Família", "Parentesco", "Laço", "Amizade", "Companheirismo", "Parceria",
+    "Cooperação", "Trabalho", "Esforço", "Dedicação", "Compromisso", "Responsabilidade", "Dever", "Obrigação",
+    "Encargo", "Balança","Peso", "Pressão", "Tensão", "Stress", "Relaxamento", "Descanso", "Sono", "Sonho", "Fantasia",
+    "Imaginação", "Criatividade", "Inovação", "Novidade", "Descoberta", "Exploração", "Aventura", "Coragem",
+    "Audácia", "Perigo", "Risco", "Incerteza", "Mistério", "Suspense", "Drama", "Filme", "Sentimento", "Sensação", "Toque",
+    "Contato", "Conversa", "Diálogo", "Comunicação", "Expressão", "Linguagem", "Palavra", "Significado",
+    "Entendimento", "Compreensão", "Conhecimento", "Sabedoria", "Inteligência", "Mente", "Cérebro", "Pensamento",
+    "Ideia", "Pesquisa", "Livros", "Leitura", "Ler","Entender", "Compreender", "Verdade", "Fato", "Relatar","Evento", "Ocorrência", "Situação",
+    "Circunstância", "Contexto", "Ambiente", "Atmosfera", "Clima", "Estação", "Primavera", "Verão", "Inverno","Outono",
+    "Inverno", "Frio", "Gelo", "Neve", "Montanha", "Pico", "Elevação", "Altitude", "Ônibus", "Voar", "Avião","Carro", "Voo", "Asa", "Pássaro",
+    "Penas", "Bico", "Bicar", "Alimentação", "Caçar", "Peixes", "Sobrevoar", "Oceano", "Mar", "Praia", "Areia", "Sol", "Lua", "Queimadura",
+    "Proteção", "Creme", "Hidratação", "Água", "Suco", "Fruta", "Maçã", "Banana", "Abacaxi", "Manga",
+    "Tangerina", "Citrus", "Limão", "Azedo", "Doce", "Açúcar", "Mel", "Abelha", "Colmeia", "Zangão", "Mosquito",
+    "Soldado", "Exército", "Força", "Poder", "Autoridade", "Liderança", "Comando", "Controle", "Domínio",
+    "Submissão", "Obediência", "Respeito", "Honra", "Dignidade", "Orgulho", "Vaidade", "Narcisismo", "Egoísmo",
+    "Altruísmo", "Generosidade", "Solidariedade", "Ajuda", "Suporte", "Assistência", "Socorro", "Emergência",
+    "Crise", "Problema", "Solução", "Resolução", "Conclusão", "Encerramento", "Fim", "Término", "Começo", "Início",
+    "Origem", "Causa", "Efeito", "Resultado", "Consequência", "Impacto", "Influência", "Poder", "Força", "Energia",
+    "Movimento", "Ação", "Reação", "Resistência", "Adaptabilidade", "Flexibilidade", "Mudança", "Transformação",
+    "Evolução", "Desenvolvimento", "Progresso", "Crescimento", "Expansão", "Amplitude", "Largura", "Extensão",
+    "Comprimento", "Distância", "Espaço", "Tempo", "Duração", "Intervalo", "Momento", "Ocasião", "Circunstância",
+    "Situação", "Condição", "Estado" ,"Saúde", "Hospital", "Felicidade", "Contentamento", "Satisfação", "Plenitude",
+    "Abundância", "Riqueza", "Prosperidade", "Fortuna", "Dinheiro", "Capital", "Investimento", "Retorno", "Lucro",
+    "Benefício", "Elite", "Privilégio", "Oportunidade", "Sorte", "Azar", "Destino", "Fatalidade", "Coincidência",
+    "Acaso", "Casualidade", "Aleatoriedade", "Incerteza", "Risco", "Perigo", "Aventura", "Emoção", "Adrenalina",
+    "Excitação", "Entusiasmo", "Paixão", "Desejo", "Vontade", "Determinação", "Persistência", "Resiliência",
+    "Coragem", "Valentia", "Heroísmo", "Bravura", "Audácia", "Intrepidez", "Ousadia", "Falha", "Descaramento",
+    "Coragem", "Destemor", "Medo", "Temor", "Apreensão", "Preocupação", "Nervosismo", "Ansiedade", "Tensão", "Estresse",
+    "Pressão", "Sobrecarga", "Peso", "Responsabilidade", "Compromisso", "Dever", "Obrigação", "Moral", "Ética",
+    "Integridade", "Honestidade", "Honra", "Decência", "Respeito", "Cortesia", "Educação", "Boas maneiras",
+    "Civilidade", "Urbanidade", "Gentileza", "Amabilidade", "Cortesia", "Simpatia", "Atenção", "Consideração",
+    "Respeito", "Apoio", "Ajuda", "Assistência", "Colaboração", "Cooperação", "Solidariedade", "União", "Fraternidade",
+    "Irmandade", "Comunhão", "Compartilhamento", "Conexão", "Relacionamento", "Ligação", "Vínculo", "Laço", "Associação",
+    "Amizade", "Camaradagem", "Companheirismo", "Confiança", "Lealdade", "Fidelidade", "Devoção", "Dedicação", "Amor",
+    "Carinho", "Afeto", "Afeição", "Ternura", "Paixão", "Romance", "Desejo", "Atração", "Sedução", "Flerte", "Namoro",
+    "Compromisso", "Relacionamento", "Parceria", "União", "Casamento", "Matrimônio", "Vida conjugal", "Família",
+    "Casal", "Marido", "Esposa", "Cônjuge", "Companheiro", "Companheira", "Amante", "Amador", "Apreciador", "Olho", "Boca", "Comida", "Feijão", "Arroz",
+    "Almoço", "Janta", "Café", "Pão", "Leite", "Acordar", "Cama","Dormir", "Cansar", "Descansar", "Diverção", "Parque", "Amigos", "Festa", "Bolo", "Sobremesa", "Doce", "Doceiro", "Trabalhador", "Programador", "Programa", "Computador", "Site", "Aplicativo", "Mensagem", "Ficante", "Segredo", "Secreto", "Medo", "Alegria", "Tristeza", "Amargura", "Depressão", "Psicólogo", "Recuperação", "Esperança", "Guerreiro", "Guerra", "Exército", "País", "Presidente", "Eleitor", "Voto", "Eleição", "Vitória", "Maioria", "Contagem", "Votos",
+    "Assembleia", "Decisão", "Pensar", "Querer", "Vontade", "Arriscar", "Perigo", "Afogar","Lago", "Água", "Oceano", "Mar", "Praia", "Areia", "Sol", "Lua", "Queimadura", "Proteção", 
+    "Creme", "Hidratação", "Suco", "Fruta", "Maçã", "Pera", "Uva", "Vermelho", "Verde", "Roxo", "Machucado", "Acidente", "Batida", "Bater", "Apanhar", "Revidar", "Vingança", "Planejar", "Esperar", "Aguardar"
+]
+     let contador = 0
+     let palavraSorteada = lista[Math.floor(Math.random() * 499)]
+     let posicaoSorteado = encontrarPosicao(lista,palavraSorteada)
+     let bntIr = window.document.getElementById("tentar")
+     let cxTexto = window.document.getElementById("tentativa")
+let distancia = 0
+     bntIr.addEventListener("click",
+        function(){
+            calcularChute()
+        }
+    )
+
+    cxTexto.addEventListener("keydown",
+        function(tecla){
+            if(tecla.key == "Enter"){
+            calcularChute()
+            }
+        }
+    )
+
+    function calcularChute(){
+      
+        let position = encontrarPosicao(lista, cxTexto.value)
+        if(position > 0){
+        contador++
+        window.document.getElementById("cont").innerText = contador
+        distancia = position - posicaoSorteado
+        if(distancia < 0) {
+           distancia = distancia * -1
+            }
+
+        if(distancia <= 20){
+        window.document.getElementById("tentativas").innerHTML += '   <div class="alert alert-success alerta mt-1" role="alert" > A palavra ' + cxTexto.value  +' está a &nbsp; <i> ' + distancia + '</i> &nbsp; posições</div>';
+    }
+        else if(distancia < 100){
+            window.document.getElementById("tentativas").innerHTML += '   <div class="alert alert-primary alerta mt-1" role="alert" > A palavra ' + cxTexto.value  +'&nbsp está na a &nbsp; <i> ' + distancia + '  &nbsp  </i> posições '
+        }
+        else if(distancia > 0){
+            window.document.getElementById("tentativas").innerHTML += '   <div class="alert alert-dark alerta mt-1" role="alert" > A palavra ' + cxTexto.value +' está na a &nbsp; <i> ' + distancia + ' </i>  &nbsp posições</div>';
+
+        }
+         if(distancia == 0){
+        alert("Você conseguiu!")
+        
+    }
+        
+    }
+    else{
+        if(cxTexto.value.length < 3){
+            alert("Digite uma palavra maior")
+        }
+        else{
+    alert("Palavra desconhecida")
+        }
+}
+}
+
+   
+    
+
+
+</script>
+</body>
+</html>
