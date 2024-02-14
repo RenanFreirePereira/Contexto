@@ -33,7 +33,7 @@
     <script>
          function encontrarPosicao(array, valor) {
         for (let i = 0; i < array.length; i++) {
-        if (array[i].toUpperCase() === valor.toUpperCase()) {
+        if (array[i].toUpperCase() == valor.toUpperCase()) {
         return i; 
         }
   }
@@ -117,7 +117,7 @@ let distancia = 0
     function calcularChute(){
     
         let position = encontrarPosicao(lista, cxTexto.value.trim())
-        if(position > 0){
+        if(position >= 0){
             if(aviso == true){
                 window.document.getElementById("tentativas").innerHTML = ""
                 aviso = false
