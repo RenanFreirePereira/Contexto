@@ -77,3 +77,15 @@
     color:rgb(255, 255, 255); 
     font-weight: bold;
 }
+@media (max-width:800px) {
+   #entrada{
+    background-color: red;
+    width: 95vw;
+    height: 80vh;
+   }
+   #tentativas{
+    width: 98%;
+    height: 90%;
+    margin: auto;
+   }
+}
