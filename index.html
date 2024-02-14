@@ -15,9 +15,21 @@
         <input type="text" placeholder="Insira sua palavra"  class="form-control mt-3" id="tentativa">
         <input type="button" value="Tentar"  class="btn btn-dark mt-3 ml-3" id="tentar"> 
     </span>
-        <div id="tentativas" class="mt-4">
-            <h2 id="aviso">Suas tentativas: <span id="cont">0</span></h2>
+    <h2 id="aviso">Suas tentativas: <span id="cont">0</span></h2>
+        <div id="tentativas" class="mt-3">
+            <h5 class="m-3">Palavras tentadas: <br>NENHUMA PALAVRA DETECTADA</h5>
     </div>
+</div>
+    <div id="vitoria" hidden>
+        <h2 id="t4">Parabéns! você conseguiu!</h2>
+        <span class="t5">Foram apenas:</span>
+        <span id="contTentativa">0</span>
+        <span class="t5">tentativas</span>
+        <a href="index.html">
+        <button type="button" class="btn btn-success mt-2">Jogar de novo</button>
+    </a>
+    </div>
+
     <script>
          function encontrarPosicao(array, valor) {
         for (let i = 0; i < array.length; i++) {
@@ -40,9 +52,9 @@
     "Pulso", "Batimento", "Coração", "Sentimento", "Emoção", "Expressão", "Arte", "Pintura", "Tinta", "Escova",
     "Cabelo", "Beleza", "Elegância", "Graciosidade", "Dança", "Música", "Harmonia", "Melodia", "Ritmo", "Tambor",
     "Instrumento", "Guitarra", "Corda", "Arco", "Flecha", "Alvo", "Precisão", "Certeza", "Confiança", "Segurança",
-    "Proteção", "Abrigo", "Casa", "Lar", "Família", "Parentesco", "Laço", "Amizade", "Companheirismo", "Parceria",
+    "Proteção", "Abrigo","Casa", "Móveis", "Sofá", "Televisão", "Mesa","Penteadeira", "Cadeira", "Lugar", "Lar", "Família", "Parentesco", "Laço", "Amizade", "Companheirismo", "Parceria",
     "Cooperação", "Trabalho", "Esforço", "Dedicação", "Compromisso", "Responsabilidade", "Dever", "Obrigação",
-    "Encargo", "Balança","Peso", "Pressão", "Tensão", "Stress", "Relaxamento", "Descanso", "Sono", "Sonho", "Fantasia",
+    "Encargo", "Balança","Peso", "Pressão", "Tensão", "Pressão", "Relaxamento", "Descanso", "Sono", "Sonho", "Fantasia",
     "Imaginação", "Criatividade", "Inovação", "Novidade", "Descoberta", "Exploração", "Aventura", "Coragem",
     "Audácia", "Perigo", "Risco", "Incerteza", "Mistério", "Suspense", "Drama", "Filme", "Sentimento", "Sensação", "Toque",
     "Contato", "Conversa", "Diálogo", "Comunicação", "Expressão", "Linguagem", "Palavra", "Significado",
@@ -75,10 +87,10 @@
     "Irmandade", "Comunhão", "Compartilhamento", "Conexão", "Relacionamento", "Ligação", "Vínculo", "Laço", "Associação",
     "Amizade", "Camaradagem", "Companheirismo", "Confiança", "Lealdade", "Fidelidade", "Devoção", "Dedicação", "Amor",
     "Carinho", "Afeto", "Afeição", "Ternura", "Paixão", "Romance", "Desejo", "Atração", "Sedução", "Flerte", "Namoro",
-    "Compromisso", "Relacionamento", "Parceria", "União", "Casamento", "Matrimônio", "Vida conjugal", "Família",
-    "Casal", "Marido", "Esposa", "Cônjuge", "Companheiro", "Companheira", "Amante", "Amador", "Apreciador", "Olho", "Boca", "Comida", "Feijão", "Arroz",
+    "Compromisso","Decisão", "Pensar", "Aceitar",  "Relacionamento", "Parceria", "União", "Casamento", "Matrimônio", "Filhos", "Família",
+    "Casal", "Marido", "Esposa", "Cônjuge", "Companheiro", "Companheira", "Amante", "Amador", "Apreciador", "Olho", "Boca", "Comer","Comida", "Feijão", "Arroz",
     "Almoço", "Janta", "Café", "Pão", "Leite", "Acordar", "Cama","Dormir", "Cansar", "Descansar", "Diverção", "Parque", "Amigos", "Festa", "Bolo", "Sobremesa", "Doce", "Doceiro", "Trabalhador", "Programador", "Programa", "Computador", "Site", "Aplicativo", "Mensagem", "Ficante", "Segredo", "Secreto", "Medo", "Alegria", "Tristeza", "Amargura", "Depressão", "Psicólogo", "Recuperação", "Esperança", "Guerreiro", "Guerra", "Exército", "País", "Presidente", "Eleitor", "Voto", "Eleição", "Vitória", "Maioria", "Contagem", "Votos",
-    "Assembleia", "Decisão", "Pensar", "Querer", "Vontade", "Arriscar", "Perigo", "Afogar","Lago", "Água", "Oceano", "Mar", "Praia", "Areia", "Sol", "Lua", "Queimadura", "Proteção", 
+    "Assembleia", "Decisão", "Pensar", "Querer", "Ter","Vontade", "Arriscar", "Perigo", "Afogar","Lago", "Água", "Oceano", "Mar", "Praia", "Areia", "Sol", "Lua", "Queimadura", "Proteção", 
     "Creme", "Hidratação", "Suco", "Fruta", "Maçã", "Pera", "Uva", "Vermelho", "Verde", "Roxo", "Machucado", "Acidente", "Batida", "Bater", "Apanhar", "Revidar", "Vingança", "Planejar", "Esperar", "Aguardar"
 ]
      let contador = 0
@@ -86,6 +98,7 @@
      let posicaoSorteado = encontrarPosicao(lista,palavraSorteada)
      let bntIr = window.document.getElementById("tentar")
      let cxTexto = window.document.getElementById("tentativa")
+     let aviso = true
 let distancia = 0
      bntIr.addEventListener("click",
         function(){
@@ -102,9 +115,13 @@ let distancia = 0
     )
 
     function calcularChute(){
-      
-        let position = encontrarPosicao(lista, cxTexto.value)
+    
+        let position = encontrarPosicao(lista, cxTexto.value.trim())
         if(position > 0){
+            if(aviso == true){
+                window.document.getElementById("tentativas").innerHTML = ""
+                aviso = false
+        }
         contador++
         window.document.getElementById("cont").innerText = contador
         distancia = position - posicaoSorteado
@@ -112,19 +129,25 @@ let distancia = 0
            distancia = distancia * -1
             }
 
+        let conteudo =  window.document.getElementById("tentativas").innerHTML
+        window.document.getElementById("tentativas").style.paddingTop = "2vw"
         if(distancia <= 20){
-        window.document.getElementById("tentativas").innerHTML += '   <div class="alert alert-success alerta mt-1" role="alert" > A palavra ' + cxTexto.value  +' está a &nbsp; <i> ' + distancia + '</i> &nbsp; posições</div>';
+
+       window.document.getElementById("tentativas").innerHTML = '   <div class="alert alert-success alerta mt-1" role="alert" > A palavra ' + cxTexto.value  +' está a &nbsp; <i> ' + distancia + '</i> &nbsp; posições</div>' + conteudo;
     }
         else if(distancia < 100){
-            window.document.getElementById("tentativas").innerHTML += '   <div class="alert alert-primary alerta mt-1" role="alert" > A palavra ' + cxTexto.value  +'&nbsp está na a &nbsp; <i> ' + distancia + '  &nbsp  </i> posições '
+            window.document.getElementById("tentativas").innerHTML =  '   <div class="alert alert-primary alerta mt-1" role="alert" > A palavra ' + cxTexto.value  +'&nbsp está a &nbsp; <i> ' + distancia + '  &nbsp  </i> posições ' + conteudo
         }
         else if(distancia > 0){
-            window.document.getElementById("tentativas").innerHTML += '   <div class="alert alert-dark alerta mt-1" role="alert" > A palavra ' + cxTexto.value +' está na a &nbsp; <i> ' + distancia + ' </i>  &nbsp posições</div>';
+            window.document.getElementById("tentativas").innerHTML = '   <div class="alert alert-danger alerta mt-1" role="alert" > A palavra ' + cxTexto.value +' está a &nbsp; <i> ' + distancia + ' </i>  &nbsp posições</div>' + conteudo;
 
         }
          if(distancia == 0){
-        alert("Você conseguiu!")
-        
+
+            window.document.getElementById("entrada").style.display = "none"
+            let telaVitoria = window.document.getElementById("vitoria")
+            telaVitoria.hidden = false
+            
     }
         
     }

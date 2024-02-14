@@ -7,7 +7,7 @@
 }
 #entrada{
     width: 35vw;
-    height: 80vh;
+    height: 85vh;
     margin: auto;
     margin-top: 10vh;
     border-radius: 1vw;
@@ -26,7 +26,7 @@
     width: 35vw;
     height: 80vh;
     max-height: 80vh;
-    background-color: rgba(133, 133, 133, 0.596);
+    background-color: rgba(133, 131, 131, 0.596);
     overflow: auto;
     border-radius: 0.5vw;
     font-weight: 700;
@@ -36,11 +36,10 @@
 
 }
 #aviso{
-    font-size: 1.8vw;
-    margin: 1vw;
+    font-size: 1.5vw;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    text-decoration:underline;
+    margin-top: 1vw;
 }
 .alerta{
     width: 90%;
@@ -52,4 +51,30 @@
 }
 #t1{
     text-align: center;
+}
+#vitoria{
+    display: block;
+    background-color:rgb(16, 99, 99);
+    width: 40vw;
+    padding: 4vw;
+    height: 35vw;
+    margin: 6vw auto;
+    border-radius: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -20vw;
+}
+.t5{
+    font-weight: bolder;
+    font-size: 2vw;
+    color: white;
+}
+#contTentativa{
+    font-size: 10vw;
+    color: whitesmoke;
+}
+#t4{
+    color:rgb(255, 255, 255); 
+    font-weight: bold;
 }
